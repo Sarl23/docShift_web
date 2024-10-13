@@ -1,15 +1,15 @@
-import Header from "@/components/header"
-import { Outlet } from "react-router-dom"
+import Header from "@/components/header";
+import { Outlet } from "react-router-dom";
 
 const RootLayout = () => {
-    return (
-        <>
-        <Header/>
-        <main className="container my-5">
-            <Outlet/>
-        </main>
-        </>
-    )
-}
+  return (
+    <>
+      <Header />
+      <div className="my-5">
+        <Outlet />
+      </div>
+    </>
+  );
+};
 
-export default RootLayout
+export default RootLayout;
