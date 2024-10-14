@@ -5,10 +5,8 @@ const FooterSection = () => {
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h3 className="text-xl font-semibold mb-4">About Us</h3>
-            <p>
-              We're dedicated to making your life easier through innovative
-              mobile solutions.
-            </p>
+            <p>Jimmy Plazas</p>
+            <p>Sergio Rojas</p>
           </div>
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h3 className="text-xl font-semibold mb-4">Contact</h3>
@@ -31,7 +29,7 @@ const FooterSection = () => {
           </div>
         </div>
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p>&copy; 2024 Your App Name. All rights reserved.</p>
+          <p>&copy; 2024 DocShift. All rights reserved.</p>
         </div>
       </div>
     </footer>
