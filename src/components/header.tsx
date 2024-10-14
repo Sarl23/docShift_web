@@ -2,6 +2,7 @@ import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { Button } from "./ui/button";
 import { useAuth, useSigninCheck } from "reactfire";
 import { useNavigate } from "react-router-dom";
+import { ModeToggle } from "./mode-toggle";
 
 const Header = () => {
   const auth = useAuth();
@@ -34,6 +35,9 @@ const Header = () => {
             </Button>
           )}
         </nav>
+        <div className="ml-2">
+          <ModeToggle />
+        </div>
       </div>
     </div>
   );
