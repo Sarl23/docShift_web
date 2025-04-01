@@ -4,8 +4,6 @@ const DashboardPage = () => {
 
     const {data: user}= useUser();
 
-    console.log({user});
-
     return (
         <>
         <h1>dashboard-page</h1>
