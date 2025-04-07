@@ -1,25 +1,19 @@
-import { Navigate, Outlet } from "react-router-dom"
-import { useSigninCheck } from 'reactfire';
+// src/pages/layouts/private-layout.tsx
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuthStatus } from "@/hooks/useAuthStatus";
 
 const PrivateLayout = () => {
+  const { loading, isAuthenticated } = useAuthStatus();
 
-    const { status, data: signInCheckResult } = useSigninCheck();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    if (status === "loading") {
-        return <div>loading</div>
-    }
+  if (!isAuthenticated) {
+    return <Navigate to="/" />;
+  }
 
-    if (signInCheckResult.signedIn) {
-        return <Outlet />
-    }
+  return <Outlet />;
+};
 
-    return (
-        <>
-            <main className="container my-6">
-                <Navigate to="/" />
-            </main>
-        </>
-    )
-}
-
-export default PrivateLayout
+export default PrivateLayout;

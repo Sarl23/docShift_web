@@ -1,15 +1,14 @@
-import { useUser } from "reactfire"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
-const DashboardPage = () => {
-
-    const {data: user}= useUser();
-
-    return (
-        <>
-        <h1>dashboard-page</h1>
-        <h2>welcome {user?.displayName}</h2>
-        </>
-    )
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
+  );
 }
-
-export default DashboardPage
