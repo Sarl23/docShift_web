@@ -8,12 +8,12 @@ import TestimonialsSections from "@/sections/testimonials-sections";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
+    <div className={`min-h-screen bg-[var(--background-color)]`}>
       <HeroSection />
       <FeaturesSection />
       <HowItWorksSection />
       <TestimonialsSections />
-      <CtaSection/>
+      <CtaSection />
       <FooterSection />
     </div>
   );
