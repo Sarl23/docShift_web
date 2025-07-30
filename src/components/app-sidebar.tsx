@@ -1,5 +1,4 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-
+import { ChevronUp, Home, Search, Settings } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -9,40 +8,46 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar"
+import { Link } from "react-router-dom"
+import { useGoogleAuth } from "@/hooks/useGoogleAuth"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "./ui/react-dropdown-menu"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import { useTheme } from "./theme-provider"
 
-// Menu items.
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/dashboard",
     icon: Home,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
+    title: "Asignacion de turnos",
+    url: "/dashboard/management_shifts",
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Notas pendientes",
+    url: "/dashboard/management",
+    icon: Search,
+  },
+  {
+    title: "Ajustes",
+    url: "/settings",
     icon: Settings,
   },
 ]
 
 export function AppSidebar() {
+  const { setTheme } = useTheme();
+  const { user, logout } = useGoogleAuth()
+  const handleClickSignOut = async () => {
+    await logout()
+  }
+
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon" className="mb-20">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -51,10 +56,10 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -62,6 +67,46 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter className="w-full">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  <Avatar className="w-7 h-7">
+                    <AvatarImage src={user?.photoURL ?? undefined} />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  {user?.displayName || "User"}
+                  <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="top"
+                className="w-[--radix-popper-anchor-width]"
+              >
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuItem>
+                  <span>Account</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleClickSignOut}>
+                  <span>Sign out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   )
 }

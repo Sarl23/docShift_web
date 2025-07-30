@@ -1,12 +1,12 @@
-// src/pages/layouts/private-layout.tsx
 import { Navigate, Outlet } from "react-router-dom";
 import { useAuthStatus } from "@/hooks/useAuthStatus";
+import { Skeleton } from "@/components/ui/skeleton"
 
 const PrivateLayout = () => {
   const { loading, isAuthenticated } = useAuthStatus();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Skeleton className="h-[20px] w-[100px] rounded-full" />;
   }
 
   if (!isAuthenticated) {

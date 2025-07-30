@@ -17,7 +17,9 @@ export function useGoogleAuth() {
   const login = async () => {
     const provider = new GoogleAuthProvider()
     try {
-      await signInWithPopup(auth, provider)
+      const resultUSer = await signInWithPopup(auth, provider)
+      setUser(resultUSer.user)
+      return resultUSer.user
     } catch (error) {
       console.error("Login error:", error)
     }
@@ -26,6 +28,7 @@ export function useGoogleAuth() {
   const logout = async () => {
     try {
       await signOut(auth)
+      setUser(null)
     } catch (error) {
       console.error("Logout error:", error)
     }

@@ -7,7 +7,7 @@ const HeroSection = () => {
       <div className="flex flex-col md:flex-row items-center justify-between">
         <div className="md:w-1/2 mb-8 md:mb-0">
           <h1 className="text-4xl md:text-6xl mb-4">
-            DocShift
+            MediTurnos
           </h1>
           <p className="text-xl mb-6">
             Simplifica tu vida con nuestra innovadora app,
