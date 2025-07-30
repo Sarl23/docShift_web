@@ -25,10 +25,10 @@ export default function ManagementPage() {
     }, []);
 
     const handleAssignShifts = (user: User) => {
-        console.log("Usear:", user);
+        console.log("User:", user);
         setSelectedUser(user);
         // Implement the logic for assigning shifts here
-        
+
     }
 
 
