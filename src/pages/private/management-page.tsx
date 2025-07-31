@@ -1,17 +1,9 @@
-import {
-	Card,
-	CardHeader,
-	CardTitle,
-	CardDescription,
-	CardContent,
-	CardFooter,
-} from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import { Settings } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { useEffect, useState } from 'react'
-import { getUsers } from '@/lib/api/user'
-import { User } from '@/lib/api/user'
+import { getUsers, User } from '@/lib/api/user'
 import Calendar03 from '@/components/calendar-03'
 
 export default function ManagementPage() {
@@ -68,62 +60,63 @@ export default function ManagementPage() {
 					))}
 				</div>
 				<Separator orientation="vertical" />
-				<div className="flex items-start space-x-4">
-					<Card>
-						<CardHeader>
-							<CardTitle>Sergio Rojas</CardTitle>
-							<CardDescription>Esp. Neurologo</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<div className="flex items-center justify-between gap-2.5">
-								<img
-									src="/src/assets/sarl-sticker.png"
-									alt="Doctor"
-									className="w-48 h-48 rounded-full"
-								/>
-								<div>
-									<Badge variant="secondary">Badge</Badge>
-									<div>Sergio Rojas</div>
-									<div>Dr. Esp. Neurologo</div>
-								</div>
-							</div>
-							<div className="mt-4">
-								<div className="flex items-center p-2 bg-gray-100 rounded-lg justify-between mb-2">
-									<div className="flex items-stretch  gap-2.5">
-										<Settings className="w-5 h-5" />
-										<p className="text-sm">Correo</p>
+				{selectedUser ? (
+					<div className="flex items-start space-x-4">
+						<Card>
+							<CardHeader>
+								<CardTitle>{selectedUser.name}</CardTitle>
+								<CardDescription>{selectedUser.rol}</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<div className="flex items-center justify-between gap-2.5">
+									<img
+										src="/src/assets/sarl-sticker.png"
+										alt="Doctor"
+										className="w-48 h-48 rounded-full"
+									/>
+									<div>
+										<Badge variant="secondary">Badge</Badge>
+										<div>{selectedUser.name}</div>
+										<div>Dr. Esp. Neurologo</div>
 									</div>
-									<p className="text-sm">emailsergiorojas@gmail.com</p>
 								</div>
-							</div>
-						</CardContent>
-					</Card>
-					<div className="flex flex-col space-y-4 w-full">
-						<Card>
-							<CardContent>
-								<div>
-									<h2 className="text-lg font-semibold">Turnos disponibles</h2>
-									<ul className="list-disc pl-5">
-										<li>Turno 1: 10:00 AM - 11:00 AM</li>
-										<li>Turno 2: 11:30 AM - 12:30 PM</li>
-										<li>Turno 3: 1:00 PM - 2:00 PM</li>
-									</ul>
+								<div className="mt-4">
+									<div className="flex items-center p-2 bg-gray-100 rounded-lg justify-between mb-2">
+										<div className="flex items-stretch  gap-2.5">
+											<Settings className="w-5 h-5" />
+											<p className="text-sm">Correo</p>
+										</div>
+										<p className="text-sm">{selectedUser.email}</p>
+									</div>
 								</div>
 							</CardContent>
 						</Card>
-						<Card>
-							<CardContent>
-								<div>
-									<h2 className="text-lg font-semibold">Calendario</h2>
-									<Calendar03 />
-								</div>
-							</CardContent>
-							<CardFooter>
-								<p>Card Footer</p>
-							</CardFooter>
-						</Card>
+						<div className="flex flex-col space-y-4 w-full">
+							<Card>
+								<CardContent>
+									<div>
+										<h2 className="text-lg font-semibold">Turnos ya asignados</h2>
+										<ul className="list-disc pl-5">
+											<li>Turno 1: 10:00 AM - 11:00 AM</li>
+											<li>Turno 2: 11:30 AM - 12:30 PM</li>
+											<li>Turno 3: 1:00 PM - 2:00 PM</li>
+										</ul>
+									</div>
+								</CardContent>
+							</Card>
+							<Card>
+								<CardContent>
+									<div>
+										<h2 className="text-lg font-semibold">Calendario</h2>
+										<Calendar03 selectedUser={selectedUser} />
+									</div>
+								</CardContent>
+							</Card>
+						</div>
 					</div>
-				</div>
+				) : (
+					<div>Selecciona un usuario</div>
+				)}
 			</div>
 		</div>
 	)
