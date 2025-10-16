@@ -27,7 +27,8 @@ export const getUsers = async (companyId: string): Promise<User[]> => {
   return res.data
 }
 
-export const getGLobalUser = async (userId: string): Promise<User> => {
+export const getGlobalUSer = async (userId: string): Promise<User> => {
+  console.log(userId)
   const res = await api<{ success: boolean; data: User }>(
     `${import.meta.env.VITE_API_URL}/api/globalUserWithId/${userId}/`
   )

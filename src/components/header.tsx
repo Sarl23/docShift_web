@@ -3,7 +3,7 @@ import { useGoogleAuth } from "@/hooks/useGoogleAuth"
 import { useNavigate } from "react-router-dom"
 import { ModeToggle } from "./mode-toggle"
 import { useState, useEffect } from "react";
-import { getGLobalUser } from "@/lib/api/user";
+import { getGlobalUSer } from "@/lib/api/user";
 import { toast } from "sonner"
 
 const Header = () => {
@@ -34,7 +34,7 @@ const Header = () => {
         toast.error("Error al iniciar sesión, por favor intenta nuevamente.");
         throw new Error("No se pudo iniciar sesión, usuario no autenticado.")
       }
-      const validatedUser = await getGLobalUser(autUser.uid)
+      const validatedUser = await getGlobalUSer(autUser.uid)
       if (validatedUser) {
         toast.success("Bienvenido de vuelta, " + validatedUser.name);
         navigate("/dashboard");
@@ -61,7 +61,7 @@ const Header = () => {
           }`}
       >
         <div className="flex items-center">
-          <h2 className="text-white font-semibold text-xl md:text-2xl lg:text-3xl">MediTurnos</h2>
+          <h2 className="text-gray-900 font-semibold text-xl md:text-2xl lg:text-3xl dark:text-white">MediTurnos</h2>
           <nav className="ml-auto">
             {loading ? (
               <Button disabled>Loading...</Button>
