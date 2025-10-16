@@ -19,6 +19,11 @@ export const ItemsRoutes = [
 		icon: Search,
 	},
 	{
+		title: 'Jornadas laborales',
+		url: ROUTES.MANAGEMENT_NOTES,
+		icon: Search,
+	},
+	{
 		title: 'Notas pendientes',
 		url: ROUTES.MANAGEMENT_NOTES,
 		icon: Search,

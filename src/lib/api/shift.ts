@@ -7,6 +7,7 @@ export interface Shift {
         name: string,
         start_time: Timestamp,
         end_time: Timestamp
+        date: Date[],
 }
 
 export interface ShiftCreate {
@@ -31,6 +32,13 @@ export const createShiftType = async (companyId: string, shift: ShiftCreate): Pr
             method: 'POST',
             body: JSON.stringify(shift),
         }
+    );
+    return res.data;
+}
+
+export const getShiftByUserId = async (companyId: string, userId: string): Promise<Shift[]> => {
+    const res = await api<{ success: boolean; data: Shift[] }>(
+        `${import.meta.env.VITE_API_URL}/api/companies/${companyId}/shift_by_user/${userId}`
     );
     return res.data;
 }

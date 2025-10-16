@@ -4,7 +4,12 @@ export interface User {
   companyId: string;
   email: string;
   name: string;
+  last_name: string;
+  image: string;
+  phone: string;
+  address: string;
   status: string;
+  city: string;
   rol: string;
 }
 
