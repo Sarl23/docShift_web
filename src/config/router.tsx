@@ -5,6 +5,7 @@ import ManagementPage from "@/pages/private/management-page"
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "@/pages/layouts/dashboard-layout";
 import PrivateDashboardPage from "@/pages/private/privateDashboard-page";
+import NotFoundPage from "@/pages/not-found-page";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,8 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      // Ruta 404 - debe estar al final
+      { path: "*", element: <NotFoundPage /> },
     ],
   },
 ]);
