@@ -6,40 +6,35 @@ import { Toaster } from "sonner";
 import { ConfirmationModal } from "@/components/confirmation-modal";
 
 const RootLayout = () => {
-  const { user, logout } = useGoogleAuth()
+  const { user, logout, loading } = useGoogleAuth()
   const navigate = useNavigate()
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Antes de salir:
-  window.addEventListener("beforeunload", () => {
-    localStorage.setItem("pendingLogout", "true");
-  });
-
-  // Al cargar la app:
+  // Al cargar la app por primera vez, verificar si hay un pendingLogout
   useEffect(() => {
-    if (localStorage.getItem("pendingLogout") === "true" && user) {
+    if (isInitialLoad && localStorage.getItem("pendingLogout") === "true" && user) {
       setShowLogoutModal(true);
     }
-  }, [user]);
+    setIsInitialLoad(false);
+  }, [user, isInitialLoad]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (user) {
-        // setShowLogoutModal(true);
-        window.addEventListener("unload", () => {
-          logout();
-        });
+        // Marcar que hay un logout pendiente cuando el usuario cierra/recarga la página
+        localStorage.setItem("pendingLogout", "true");
         e.preventDefault();
         e.returnValue = "";
         return "";
       }
     };
+    
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
-
     };
-  }, [logout, user]);
+  }, [user]);
 
   const handleConfirmLogout = async () => {
     await logout();
@@ -56,7 +51,7 @@ const RootLayout = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      {!user && <Header />}
+      {!loading && !user && <Header />}
       <Outlet />
       <Toaster />
       <ConfirmationModal

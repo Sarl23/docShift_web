@@ -9,7 +9,7 @@ import { useAuthStore } from "@/store/useAuthStore"
 
 const Header = () => {
   const { user, login, logout, loading } = useGoogleAuth()
-  const { setUser, clearAuth } = useAuthStore()
+  const { setUser, setCompany, clearAuth } = useAuthStore()
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(true)
 
@@ -39,6 +39,7 @@ const Header = () => {
       const validatedUser = await getGlobalUSer(autUser.uid)
       if (validatedUser) {
         setUser(validatedUser);
+        setCompany(validatedUser.companiesData[0]); //TODO: review select company
         localStorage.setItem("pendingLogout", "false");
         toast.success("Bienvenido de vuelta, " + validatedUser.name);
         navigate("/dashboard");

@@ -1,4 +1,5 @@
 import { api } from "./utils";
+
 export interface User {
   userId: string;
   companyId: string;
@@ -11,9 +12,19 @@ export interface User {
   status: string;
   city: string;
   rol: string;
+  companiesData: {
+    address: string;
+    city: string;
+    code: string;
+    description: string;
+    id: string;
+    name: string;
+    nit: string;
+    roles: string[];
+  }[]
 }
 
-export const getUserById = async ( companyId: string, userId: string): Promise<User> => {
+export const getUserById = async (companyId: string, userId: string): Promise<User> => {
   const res = await api<{ success: boolean; data: User }>(
     `${import.meta.env.VITE_API_URL}/api/company/${companyId}/users/${userId}/`
   )
@@ -28,7 +39,6 @@ export const getUsers = async (companyId: string): Promise<User[]> => {
 }
 
 export const getGlobalUSer = async (userId: string): Promise<User> => {
-  console.log(userId)
   const res = await api<{ success: boolean; data: User }>(
     `${import.meta.env.VITE_API_URL}/api/globalUserWithId/${userId}/`
   )

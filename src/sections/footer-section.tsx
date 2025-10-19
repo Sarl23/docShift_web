@@ -9,7 +9,7 @@ const FooterSection = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <Calendar className="w-8 h-8 text-blue-400" />
-              <h3 className="text-2xl font-bold">DocShift</h3>
+              <h3 className="text-2xl font-bold">MediTurnos</h3>
             </div>
             <p className="text-gray-400 mb-4">
               Solución integral para la gestión de turnos hospitalarios. 
@@ -77,7 +77,7 @@ const FooterSection = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-gray-400">
                 <Mail className="w-4 h-4 text-blue-400" />
-                <span>soporte@docshift.com</span>
+                <span>soporte@MediTurnos.com</span>
               </li>
               <li className="flex items-center gap-2 text-gray-400">
                 <Phone className="w-4 h-4 text-blue-400" />
@@ -95,7 +95,7 @@ const FooterSection = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              <p>&copy; 2024 DocShift. Todos los derechos reservados.</p>
+              <p>&copy; 2024 MediTurnos. Todos los derechos reservados.</p>
               <p className="mt-1">Desarrollado por Jimmy Plazas & Sergio Rojas</p>
             </div>
             

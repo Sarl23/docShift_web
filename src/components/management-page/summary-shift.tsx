@@ -58,11 +58,11 @@ export const SummaryShift = ({ shiftList }: SummaryShiftProps) => {
 										{shift?.date.length} días
 									</Badge>
 								</div>
-								{/* <div className="space-y-1">
-									{shift?.date.slice(0, 3).map((date, index_date) => (
+								<div className="space-y-1">
+									{Array.isArray(shift?.date) && shift.date.map((date, index_date) => (
 										<div key={index_date} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
 											<Calendar className="w-3 h-3" />
-											<span>{formatter.format(new Date(date))}</span>
+											{formatter.format(new Date(date))}
 										</div>
 									))}
 									{shift?.date.length > 3 && (
@@ -70,7 +70,7 @@ export const SummaryShift = ({ shiftList }: SummaryShiftProps) => {
 											+{shift.date.length - 3} días más
 										</p>
 									)}
-								</div> */}
+								</div>
 							</div>
 						))}
 					</div>

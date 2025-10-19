@@ -13,7 +13,7 @@ const HeroSection = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-              DocShift
+              MediTurnos
             </h1>
             
             <h2 className="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 font-medium">

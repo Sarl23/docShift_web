@@ -23,7 +23,7 @@ const CtaSection = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-blue-100 mb-10 leading-relaxed">
-            Únete a los hospitales que ya están mejorando su eficiencia operativa con DocShift
+            Únete a los hospitales que ya están mejorando su eficiencia operativa con MediTurnos
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

@@ -7,7 +7,7 @@ const TestimonialsSections = () => {
       name: "Dr. María González",
       role: "Directora Médica",
       hospital: "Hospital Central",
-      comment: "DocShift ha revolucionado la forma en que gestionamos los turnos. Ahora podemos asignar personal de manera más eficiente y reducir conflictos de horarios.",
+      comment: "MediTurnos ha revolucionado la forma en que gestionamos los turnos. Ahora podemos asignar personal de manera más eficiente y reducir conflictos de horarios.",
       avatar: "MG",
       rating: 5
     },
@@ -37,7 +37,7 @@ const TestimonialsSections = () => {
             Lo Que Dicen Nuestros Usuarios
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Profesionales de la salud que confían en DocShift para gestionar sus turnos
+            Profesionales de la salud que confían en MediTurnos para gestionar sus turnos
           </p>
         </div>
         
