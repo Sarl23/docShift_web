@@ -5,9 +5,11 @@ import { ModeToggle } from "./mode-toggle"
 import { useState, useEffect } from "react";
 import { getGlobalUSer } from "@/lib/api/user";
 import { toast } from "sonner"
+import { useAuthStore } from "@/store/useAuthStore"
 
 const Header = () => {
   const { user, login, logout, loading } = useGoogleAuth()
+  const { setUser, clearAuth } = useAuthStore()
   const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(true)
 
@@ -36,6 +38,8 @@ const Header = () => {
       }
       const validatedUser = await getGlobalUSer(autUser.uid)
       if (validatedUser) {
+        setUser(validatedUser);
+        localStorage.setItem("pendingLogout", "false");
         toast.success("Bienvenido de vuelta, " + validatedUser.name);
         navigate("/dashboard");
       } else {
@@ -50,6 +54,8 @@ const Header = () => {
   }
 
   const handleClickSignOut = async () => {
+    localStorage.setItem("pendingLogout", "false");
+    clearAuth();
     await logout()
     toast.success("Sesión cerrada correctamente");
   }
